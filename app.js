@@ -16,6 +16,7 @@ const projectRouter = require('./server/routes/project');
 const postRouter = require('./server/routes/post');
 const blogPostRouter = require('./server/routes/blog-post');
 const skillRouter = require('./server/routes/skill');
+const visitRouter = require('./server/routes/visit');
 const { logRequest } = require('./helpers/request-helper');
 
 BootstrapHelper.bootstrapStart();
@@ -73,6 +74,7 @@ app.use('/project', projectRouter);
 app.use('/post', postRouter);
 app.use('/blog', blogPostRouter);
 app.use('/skill', skillRouter);
+app.use('/visit', visitRouter);
 
 if (swagger.isActive) {
   BootstrapHelper.createSwaggerJson();
