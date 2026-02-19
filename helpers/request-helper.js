@@ -40,10 +40,8 @@ class RequestHelper {
 
   static async validateRequest(req, res, next, validationObject) {
     if (validationObject?.headers) {
-      console.log(req.headers);
       const { error } = validationObject.headers.validate(req.headers);
       if (error) {
-        console.log(error);
         res.err = error;
       }
     }
@@ -76,9 +74,7 @@ class RequestHelper {
         response: res.body,
       });
     }
-    catch (e) { /* no need to handle */ }
-
-    // console.log(req.requestDate, req.query);
+    catch (e) { }
   }
 }
 

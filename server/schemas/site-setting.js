@@ -25,8 +25,6 @@ const siteSettingResponseSchema = Joi.object({
   github_url: Joi.string(),
   linkedin_url: Joi.string(),
   medium_url: Joi.string(),
-  createdAt: Joi.date(),
-  updatedAt: Joi.date(),
 });
 
 module.exports = {
