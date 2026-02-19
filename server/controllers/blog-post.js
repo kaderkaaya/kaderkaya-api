@@ -11,20 +11,9 @@ class BlogPostController {
     next();
   }
 
-  static async getBlogPostById(req, res, next) {
-    try {
-      const { id } = req.params;
-      const item = await BlogPostService.getById({ id });
-      res.response = { item };
-    } catch (e) {
-      res.err = e;
-    }
-    next();
-  }
-
   static async getBlogPostBySlug(req, res, next) {
     try {
-      const { slug } = req.params;
+      const { slug } = req.query;
       const item = await BlogPostService.getBySlug({ slug });
       res.response = { item };
     } catch (e) {
@@ -46,8 +35,7 @@ class BlogPostController {
 
   static async updateBlogPost(req, res, next) {
     try {
-      const { id } = req.params;
-      const { title, slug, excerpt, content, cover_image, published_at, tags, order } = req.body;
+      const { id, title, slug, excerpt, content, cover_image, published_at, tags, order } = req.body;
       const item = await BlogPostService.update({ id, data: { title, slug, excerpt, content, cover_image, published_at, tags, order } });
       res.response = { item };
     } catch (e) {
@@ -58,7 +46,7 @@ class BlogPostController {
 
   static async deleteBlogPost(req, res, next) {
     try {
-      const { id } = req.params;
+      const { id } = req.body;
       const item = await BlogPostService.remove({ id });
       res.response = { item };
     } catch (e) {

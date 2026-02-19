@@ -67,12 +67,12 @@ app.use((req, res, next) => {
 app.use('/', healthRouter);
 app.use('/user', userRouter);
 app.use('/auth', authRouter);
-app.use('/settings', siteSettingRouter);
-app.use('/experiences', experienceRouter);
-app.use('/projects', projectRouter);
-app.use('/posts', postRouter);
-app.use('/blogs', blogPostRouter);
-app.use('/skills', skillRouter);
+app.use('/setting', siteSettingRouter);
+app.use('/experience', experienceRouter);
+app.use('/project', projectRouter);
+app.use('/post', postRouter);
+app.use('/blog', blogPostRouter);
+app.use('/skill', skillRouter);
 
 if (swagger.isActive) {
   BootstrapHelper.createSwaggerJson();

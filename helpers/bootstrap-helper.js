@@ -212,6 +212,7 @@ mongoose.Aggregate.prototype.exec = async function () {
   if (!this.useCache) {
     return aggregateExec.apply(this, arguments);
   }
+
   const result = await aggregateExec.apply(this, arguments);
   return result;
 };
@@ -219,7 +220,10 @@ mongoose.Query.prototype.exec = async function () {
   if (!this.useCache) {
     return exec.apply(this, arguments);
   }
-
+  const cacheKeyObj = JSON.stringify({
+    ...this.getQuery(),
+    ...this.getOptions(),
+  });
   const result = await exec.apply(this, arguments);
   return result;
 };

@@ -14,6 +14,7 @@ const blogPostCreateBodySchema = Joi.object({
 });
 
 const blogPostUpdateBodySchema = Joi.object({
+  id: Joi.string().required(),
   title: Joi.string(),
   slug: Joi.string(),
   excerpt: Joi.string(),
@@ -22,7 +23,11 @@ const blogPostUpdateBodySchema = Joi.object({
   published_at: Joi.string(),
   tags: Joi.array().items(Joi.string()),
   order: Joi.number(),
-}).min(1);
+});
+
+const blogPostDeleteBodySchema = Joi.object({
+  id: Joi.string().required(),
+});
 
 const blogPostResponseSchema = Joi.object({
   _id: Joi.string(),
@@ -57,7 +62,7 @@ module.exports = {
   },
   getBySlug: {
     request: {
-      parameters: Joi.object({
+      query: Joi.object({
         slug: Joi.string().required(),
       }),
     },
@@ -83,9 +88,6 @@ module.exports = {
   update: {
     request: {
       headers: jwtHeaderScheme,
-      parameters: Joi.object({
-        id: Joi.string().required(),
-      }),
       body: blogPostUpdateBodySchema,
     },
     response: {
@@ -98,9 +100,7 @@ module.exports = {
   remove: {
     request: {
       headers: jwtHeaderScheme,
-      parameters: Joi.object({
-        id: Joi.string().required(),
-      }),
+      body: blogPostDeleteBodySchema,
     },
     response: {
       meta: responseMetaScheme,

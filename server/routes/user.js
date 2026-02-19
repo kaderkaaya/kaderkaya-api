@@ -12,7 +12,7 @@ BootstrapHelper.createRoute({
   method: 'get',
   validationObject: UserValidation.getUser,
   controller: UserController.getUser,
-  isAnonymous: false,
+  isAnonymous: true,
 });
 
 BootstrapHelper.createRoute({
@@ -23,26 +23,6 @@ BootstrapHelper.createRoute({
   validationObject: UserValidation.create,
   controller: UserController.createUser,
   isAnonymous: true,
-});
-
-BootstrapHelper.createRoute({
-  router,
-  pathPrefix: '/user',
-  path: '/service-caller',
-  method: 'get',
-  validationObject: UserValidation.serviceCaller,
-  controller: UserController.serviceCaller,
-  isAnonymous: false,
-});
-
-BootstrapHelper.createRoute({
-  router,
-  pathPrefix: '/user',
-  path: '/getUserById',
-  method: 'post',
-  validationObject: UserValidation.createWithParam,
-  controller: UserController.getUserById,
-  isAnonymous: false,
 });
 
 module.exports = router;

@@ -7,7 +7,7 @@ const BlogPostValidation = require('../schemas/blog-post');
 
 BootstrapHelper.createRoute({
   router,
-  pathPrefix: '/blogs',
+  pathPrefix: '/blog',
   path: '/list',
   method: 'get',
   validationObject: BlogPostValidation.list,
@@ -17,17 +17,17 @@ BootstrapHelper.createRoute({
 
 BootstrapHelper.createRoute({
   router,
-  pathPrefix: '/blogs',
-  path: '/reorder',
-  method: 'post',
-  validationObject: BlogPostValidation.reorder,
-  controller: BlogPostController.reorderBlogPosts,
-  isAnonymous: false,
+  pathPrefix: '/blog',
+  path: '/',
+  method: 'get',
+  validationObject: BlogPostValidation.getBySlug,
+  controller: BlogPostController.getBlogPostBySlug,
+  isAnonymous: true,
 });
 
 BootstrapHelper.createRoute({
   router,
-  pathPrefix: '/blogs',
+  pathPrefix: '/blog',
   path: '/create',
   method: 'post',
   validationObject: BlogPostValidation.create,
@@ -37,18 +37,18 @@ BootstrapHelper.createRoute({
 
 BootstrapHelper.createRoute({
   router,
-  pathPrefix: '/blogs',
-  path: '/getBlog',
-  method: 'get',
-  validationObject: BlogPostValidation.getBySlug,
-  controller: BlogPostController.getBlogPostBySlug,
-  isAnonymous: true,
+  pathPrefix: '/blog',
+  path: '/update',
+  method: 'post',
+  validationObject: BlogPostValidation.update,
+  controller: BlogPostController.updateBlogPost,
+  isAnonymous: false,
 });
 
 BootstrapHelper.createRoute({
   router,
-  pathPrefix: '/blogs',
-  path: '/deleteBlog',
+  pathPrefix: '/blog',
+  path: '/delete',
   method: 'post',
   validationObject: BlogPostValidation.remove,
   controller: BlogPostController.deleteBlogPost,
@@ -57,11 +57,11 @@ BootstrapHelper.createRoute({
 
 BootstrapHelper.createRoute({
   router,
-  pathPrefix: '/blogs',
-  path: '/updateBlog',
+  pathPrefix: '/blog',
+  path: '/reorder',
   method: 'post',
-  validationObject: BlogPostValidation.update,
-  controller: BlogPostController.updateBlogPost,
+  validationObject: BlogPostValidation.reorder,
+  controller: BlogPostController.reorderBlogPosts,
   isAnonymous: false,
 });
 

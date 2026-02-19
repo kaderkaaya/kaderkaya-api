@@ -7,8 +7,8 @@ const SiteSettingValidation = require('../schemas/site-setting');
 
 BootstrapHelper.createRoute({
   router,
-  pathPrefix: '/settings',
-  path: '/get',
+  pathPrefix: '/setting',
+  path: '/list',
   method: 'get',
   validationObject: SiteSettingValidation.get,
   controller: SiteSettingController.getSiteSettings,
@@ -17,7 +17,7 @@ BootstrapHelper.createRoute({
 
 BootstrapHelper.createRoute({
   router,
-  pathPrefix: '/settings',
+  pathPrefix: '/setting',
   path: '/update',
   method: 'post',
   validationObject: SiteSettingValidation.update,

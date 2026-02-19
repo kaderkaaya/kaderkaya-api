@@ -13,7 +13,7 @@ class PostController {
 
   static async getPostById(req, res, next) {
     try {
-      const { id } = req.params;
+      const { id } = req.query;
       const item = await PostService.getById({ id });
       res.response = { item };
     } catch (e) {
@@ -35,8 +35,7 @@ class PostController {
 
   static async updatePost(req, res, next) {
     try {
-      const { id } = req.params;
-      const { title, description, cover_image, external_url, published_at, tags, featured, order } = req.body;
+      const { id, title, description, cover_image, external_url, published_at, tags, featured, order } = req.body;
       const item = await PostService.update({ id, data: { title, description, cover_image, external_url, published_at, tags, featured, order } });
       res.response = { item };
     } catch (e) {
@@ -47,7 +46,7 @@ class PostController {
 
   static async deletePost(req, res, next) {
     try {
-      const { id } = req.params;
+      const { id } = req.body;
       const item = await PostService.remove({ id });
       res.response = { item };
     } catch (e) {

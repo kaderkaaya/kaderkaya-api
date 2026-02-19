@@ -7,7 +7,7 @@ const PostValidation = require('../schemas/post');
 
 BootstrapHelper.createRoute({
   router,
-  pathPrefix: '/posts',
+  pathPrefix: '/post',
   path: '/list',
   method: 'get',
   validationObject: PostValidation.list,
@@ -17,17 +17,17 @@ BootstrapHelper.createRoute({
 
 BootstrapHelper.createRoute({
   router,
-  pathPrefix: '/posts',
-  path: '/reorder',
-  method: 'post',
-  validationObject: PostValidation.reorder,
-  controller: PostController.reorderPosts,
-  isAnonymous: false,
+  pathPrefix: '/post',
+  path: '/',
+  method: 'get',
+  validationObject: PostValidation.getById,
+  controller: PostController.getPostById,
+  isAnonymous: true,
 });
 
 BootstrapHelper.createRoute({
   router,
-  pathPrefix: '/posts',
+  pathPrefix: '/post',
   path: '/create',
   method: 'post',
   validationObject: PostValidation.create,
@@ -37,18 +37,18 @@ BootstrapHelper.createRoute({
 
 BootstrapHelper.createRoute({
   router,
-  pathPrefix: '/posts',
-  path: '/getPost',
-  method: 'get',
-  validationObject: PostValidation.getById,
-  controller: PostController.getPostById,
-  isAnonymous: true,
+  pathPrefix: '/post',
+  path: '/update',
+  method: 'post',
+  validationObject: PostValidation.update,
+  controller: PostController.updatePost,
+  isAnonymous: false,
 });
 
 BootstrapHelper.createRoute({
   router,
-  pathPrefix: '/posts',
-  path: '/deletePost',
+  pathPrefix: '/post',
+  path: '/delete',
   method: 'post',
   validationObject: PostValidation.remove,
   controller: PostController.deletePost,
@@ -57,11 +57,11 @@ BootstrapHelper.createRoute({
 
 BootstrapHelper.createRoute({
   router,
-  pathPrefix: '/posts',
-  path: '/updatePost',
+  pathPrefix: '/post',
+  path: '/reorder',
   method: 'post',
-  validationObject: PostValidation.update,
-  controller: PostController.updatePost,
+  validationObject: PostValidation.reorder,
+  controller: PostController.reorderPosts,
   isAnonymous: false,
 });
 

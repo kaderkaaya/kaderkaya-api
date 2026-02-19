@@ -6,8 +6,8 @@ const BootstrapHelper = require('../../helpers/bootstrap-helper');
 
 BootstrapHelper.createRoute({
   router,
-  pathPrefix: '',
-  path: '/health',
+  pathPrefix: '/health',
+  path: '/',
   method: 'get',
   controller: HealthController.checkHealth,
   isAnonymous: true,

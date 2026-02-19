@@ -13,7 +13,7 @@ class SkillController {
 
   static async getSkillById(req, res, next) {
     try {
-      const { id } = req.params;
+      const { id } = req.query;
       const item = await SkillService.getById({ id });
       res.response = { item };
     } catch (e) {
@@ -35,8 +35,7 @@ class SkillController {
 
   static async updateSkill(req, res, next) {
     try {
-      const { id } = req.params;
-      const { category, name, icon, order } = req.body;
+      const { id, category, name, icon, order } = req.body;
       const item = await SkillService.update({ id, data: { category, name, icon, order } });
       res.response = { item };
     } catch (e) {
@@ -47,7 +46,7 @@ class SkillController {
 
   static async deleteSkill(req, res, next) {
     try {
-      const { id } = req.params;
+      const { id } = req.body;
       const item = await SkillService.remove({ id });
       res.response = { item };
     } catch (e) {

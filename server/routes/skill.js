@@ -7,7 +7,7 @@ const SkillValidation = require('../schemas/skill');
 
 BootstrapHelper.createRoute({
   router,
-  pathPrefix: '/skills',
+  pathPrefix: '/skill',
   path: '/list',
   method: 'get',
   validationObject: SkillValidation.list,
@@ -17,17 +17,17 @@ BootstrapHelper.createRoute({
 
 BootstrapHelper.createRoute({
   router,
-  pathPrefix: '/skills',
-  path: '/reorder',
-  method: 'post',
-  validationObject: SkillValidation.reorder,
-  controller: SkillController.reorderSkills,
-  isAnonymous: false,
+  pathPrefix: '/skill',
+  path: '/',
+  method: 'get',
+  validationObject: SkillValidation.getById,
+  controller: SkillController.getSkillById,
+  isAnonymous: true,
 });
 
 BootstrapHelper.createRoute({
   router,
-  pathPrefix: '/skills',
+  pathPrefix: '/skill',
   path: '/create',
   method: 'post',
   validationObject: SkillValidation.create,
@@ -37,18 +37,18 @@ BootstrapHelper.createRoute({
 
 BootstrapHelper.createRoute({
   router,
-  pathPrefix: '/skills',
-  path: '/getSkill',
-  method: 'get',
-  validationObject: SkillValidation.getById,
-  controller: SkillController.getSkillById,
-  isAnonymous: true,
+  pathPrefix: '/skill',
+  path: '/update',
+  method: 'post',
+  validationObject: SkillValidation.update,
+  controller: SkillController.updateSkill,
+  isAnonymous: false,
 });
 
 BootstrapHelper.createRoute({
   router,
-  pathPrefix: '/skills',
-  path: '/deleteSkill',
+  pathPrefix: '/skill',
+  path: '/delete',
   method: 'post',
   validationObject: SkillValidation.remove,
   controller: SkillController.deleteSkill,
@@ -57,11 +57,11 @@ BootstrapHelper.createRoute({
 
 BootstrapHelper.createRoute({
   router,
-  pathPrefix: '/skills',
-  path: '/updateSkill',
+  pathPrefix: '/skill',
+  path: '/reorder',
   method: 'post',
-  validationObject: SkillValidation.update,
-  controller: SkillController.updateSkill,
+  validationObject: SkillValidation.reorder,
+  controller: SkillController.reorderSkills,
   isAnonymous: false,
 });
 

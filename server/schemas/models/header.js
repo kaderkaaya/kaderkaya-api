@@ -1,5 +1,5 @@
 const Joi = require('joi');
 
 module.exports = Joi.object({
-  authorization: Joi.string().required(),
+  token: Joi.string().required(),
 }).unknown();

@@ -13,7 +13,7 @@ class ExperienceController {
 
   static async getExperienceById(req, res, next) {
     try {
-      const { id } = req.params;
+      const { id } = req.query;
       const item = await ExperienceService.getById({ id });
       res.response = { item };
     } catch (e) {
@@ -35,8 +35,7 @@ class ExperienceController {
 
   static async updateExperience(req, res, next) {
     try {
-      const { id } = req.params;
-      const { company, title, location, start_date, end_date, is_current, bullets, technologies, order } = req.body;
+      const { id, company, title, location, start_date, end_date, is_current, bullets, technologies, order } = req.body;
       const item = await ExperienceService.update({ id, data: { company, title, location, start_date, end_date, is_current, bullets, technologies, order } });
       res.response = { item };
     } catch (e) {
@@ -47,7 +46,7 @@ class ExperienceController {
 
   static async deleteExperience(req, res, next) {
     try {
-      const { id } = req.params;
+      const { id } = req.body;
       const item = await ExperienceService.remove({ id });
       res.response = { item };
     } catch (e) {

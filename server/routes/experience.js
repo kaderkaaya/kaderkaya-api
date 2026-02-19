@@ -7,7 +7,7 @@ const ExperienceValidation = require('../schemas/experience');
 
 BootstrapHelper.createRoute({
   router,
-  pathPrefix: '/experiences',
+  pathPrefix: '/experience',
   path: '/list',
   method: 'get',
   validationObject: ExperienceValidation.list,
@@ -17,18 +17,8 @@ BootstrapHelper.createRoute({
 
 BootstrapHelper.createRoute({
   router,
-  pathPrefix: '/experiences',
-  path: '/reorder',
-  method: 'post',
-  validationObject: ExperienceValidation.reorder,
-  controller: ExperienceController.reorderExperiences,
-  isAnonymous: false,
-});
-
-BootstrapHelper.createRoute({
-  router,
-  pathPrefix: '/experiences',
-  path: '/getExperience',
+  pathPrefix: '/experience',
+  path: '/',
   method: 'get',
   validationObject: ExperienceValidation.getById,
   controller: ExperienceController.getExperienceById,
@@ -37,7 +27,7 @@ BootstrapHelper.createRoute({
 
 BootstrapHelper.createRoute({
   router,
-  pathPrefix: '/experiences',
+  pathPrefix: '/experience',
   path: '/create',
   method: 'post',
   validationObject: ExperienceValidation.create,
@@ -47,8 +37,18 @@ BootstrapHelper.createRoute({
 
 BootstrapHelper.createRoute({
   router,
-  pathPrefix: '/experiences',
-  path: '/deleteExperience',
+  pathPrefix: '/experience',
+  path: '/update',
+  method: 'post',
+  validationObject: ExperienceValidation.update,
+  controller: ExperienceController.updateExperience,
+  isAnonymous: false,
+});
+
+BootstrapHelper.createRoute({
+  router,
+  pathPrefix: '/experience',
+  path: '/delete',
   method: 'post',
   validationObject: ExperienceValidation.remove,
   controller: ExperienceController.deleteExperience,
@@ -57,11 +57,11 @@ BootstrapHelper.createRoute({
 
 BootstrapHelper.createRoute({
   router,
-  pathPrefix: '/experiences',
-  path: '/updateExperience',
+  pathPrefix: '/experience',
+  path: '/reorder',
   method: 'post',
-  validationObject: ExperienceValidation.update,
-  controller: ExperienceController.updateExperience,
+  validationObject: ExperienceValidation.reorder,
+  controller: ExperienceController.reorderExperiences,
   isAnonymous: false,
 });
 

@@ -13,7 +13,7 @@ class ProjectController {
 
   static async getProjectById(req, res, next) {
     try {
-      const { id } = req.params;
+      const { id } = req.query;
       const item = await ProjectService.getById({ id });
       res.response = { item };
     } catch (e) {
@@ -35,8 +35,7 @@ class ProjectController {
 
   static async updateProject(req, res, next) {
     try {
-      const { id } = req.params;
-      const { name, description, bullets, tags, repo_url, live_url, featured, order } = req.body;
+      const { id, name, description, bullets, tags, repo_url, live_url, featured, order } = req.body;
       const item = await ProjectService.update({ id, data: { name, description, bullets, tags, repo_url, live_url, featured, order } });
       res.response = { item };
     } catch (e) {
@@ -47,7 +46,7 @@ class ProjectController {
 
   static async deleteProject(req, res, next) {
     try {
-      const { id } = req.params;
+      const { id } = req.body;
       const item = await ProjectService.remove({ id });
       res.response = { item };
     } catch (e) {

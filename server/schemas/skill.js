@@ -10,11 +10,16 @@ const skillCreateBodySchema = Joi.object({
 });
 
 const skillUpdateBodySchema = Joi.object({
+  id: Joi.string().required(),
   category: Joi.string(),
   name: Joi.string(),
   icon: Joi.string(),
   order: Joi.number(),
-}).min(1);
+});
+
+const skillDeleteBodySchema = Joi.object({
+  id: Joi.string().required(),
+});
 
 const skillResponseSchema = Joi.object({
   _id: Joi.string(),
@@ -45,7 +50,7 @@ module.exports = {
   },
   getById: {
     request: {
-      parameters: Joi.object({
+      query: Joi.object({
         id: Joi.string().required(),
       }),
     },
@@ -71,9 +76,6 @@ module.exports = {
   update: {
     request: {
       headers: jwtHeaderScheme,
-      parameters: Joi.object({
-        id: Joi.string().required(),
-      }),
       body: skillUpdateBodySchema,
     },
     response: {
@@ -86,9 +88,7 @@ module.exports = {
   remove: {
     request: {
       headers: jwtHeaderScheme,
-      parameters: Joi.object({
-        id: Joi.string().required(),
-      }),
+      body: skillDeleteBodySchema,
     },
     response: {
       meta: responseMetaScheme,

@@ -14,6 +14,7 @@ const postCreateBodySchema = Joi.object({
 });
 
 const postUpdateBodySchema = Joi.object({
+  id: Joi.string().required(),
   title: Joi.string(),
   description: Joi.string(),
   cover_image: Joi.string().allow(null).allow(''),
@@ -22,7 +23,11 @@ const postUpdateBodySchema = Joi.object({
   tags: Joi.array().items(Joi.string()),
   featured: Joi.boolean(),
   order: Joi.number(),
-}).min(1);
+});
+
+const postDeleteBodySchema = Joi.object({
+  id: Joi.string().required(),
+});
 
 const postResponseSchema = Joi.object({
   _id: Joi.string(),
@@ -57,7 +62,7 @@ module.exports = {
   },
   getById: {
     request: {
-      parameters: Joi.object({
+      query: Joi.object({
         id: Joi.string().required(),
       }),
     },
@@ -83,9 +88,6 @@ module.exports = {
   update: {
     request: {
       headers: jwtHeaderScheme,
-      parameters: Joi.object({
-        id: Joi.string().required(),
-      }),
       body: postUpdateBodySchema,
     },
     response: {
@@ -98,9 +100,7 @@ module.exports = {
   remove: {
     request: {
       headers: jwtHeaderScheme,
-      parameters: Joi.object({
-        id: Joi.string().required(),
-      }),
+      body: postDeleteBodySchema,
     },
     response: {
       meta: responseMetaScheme,

@@ -29,14 +29,8 @@ class RequestHelper {
 
   static async checkJwtAuth(req, res, next) {
     try {
-      const authHeader = req.headers.authorization;
-      if (!authHeader || !authHeader.startsWith('Bearer ')) {
-        res.err = new LogicError(ERRORS.UNAUTHORIZED);
-        return next();
-      }
-
-      const token = authHeader.split(' ')[1];
-      req.user = jwt.verify(token, jwtConfig.secret);
+      const authHeader = req.headers.token;
+      req.user = jwt.verify(authHeader, jwtConfig.secret);
       return next();
     } catch (e) {
       res.err = new LogicError(ERRORS.UNAUTHORIZED);
@@ -46,8 +40,10 @@ class RequestHelper {
 
   static async validateRequest(req, res, next, validationObject) {
     if (validationObject?.headers) {
+      console.log(req.headers);
       const { error } = validationObject.headers.validate(req.headers);
       if (error) {
+        console.log(error);
         res.err = error;
       }
     }

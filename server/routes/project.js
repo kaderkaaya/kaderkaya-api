@@ -7,7 +7,7 @@ const ProjectValidation = require('../schemas/project');
 
 BootstrapHelper.createRoute({
   router,
-  pathPrefix: '/projects',
+  pathPrefix: '/project',
   path: '/list',
   method: 'get',
   validationObject: ProjectValidation.list,
@@ -17,18 +17,8 @@ BootstrapHelper.createRoute({
 
 BootstrapHelper.createRoute({
   router,
-  pathPrefix: '/projects',
-  path: '/reorder',
-  method: 'post',
-  validationObject: ProjectValidation.reorder,
-  controller: ProjectController.reorderProjects,
-  isAnonymous: false,
-});
-
-BootstrapHelper.createRoute({
-  router,
-  pathPrefix: '/projects',
-  path: '/getProject',
+  pathPrefix: '/project',
+  path: '/',
   method: 'get',
   validationObject: ProjectValidation.getById,
   controller: ProjectController.getProjectById,
@@ -37,7 +27,7 @@ BootstrapHelper.createRoute({
 
 BootstrapHelper.createRoute({
   router,
-  pathPrefix: '/projects',
+  pathPrefix: '/project',
   path: '/create',
   method: 'post',
   validationObject: ProjectValidation.create,
@@ -47,8 +37,18 @@ BootstrapHelper.createRoute({
 
 BootstrapHelper.createRoute({
   router,
-  pathPrefix: '/projects',
-  path: '/deleteProject',
+  pathPrefix: '/project',
+  path: '/update',
+  method: 'post',
+  validationObject: ProjectValidation.update,
+  controller: ProjectController.updateProject,
+  isAnonymous: false,
+});
+
+BootstrapHelper.createRoute({
+  router,
+  pathPrefix: '/project',
+  path: '/delete',
   method: 'post',
   validationObject: ProjectValidation.remove,
   controller: ProjectController.deleteProject,
@@ -57,11 +57,11 @@ BootstrapHelper.createRoute({
 
 BootstrapHelper.createRoute({
   router,
-  pathPrefix: '/projects',
-  path: '/updateProject',
+  pathPrefix: '/project',
+  path: '/reorder',
   method: 'post',
-  validationObject: ProjectValidation.update,
-  controller: ProjectController.updateProject,
+  validationObject: ProjectValidation.reorder,
+  controller: ProjectController.reorderProjects,
   isAnonymous: false,
 });
 

@@ -30,6 +30,7 @@ const createBodySchema = Joi.object({
 });
 
 const updateBodySchema = Joi.object({
+  id: Joi.string().required(),
   company: Joi.string().optional(),
   title: Joi.string().optional(),
   location: Joi.string().optional(),
@@ -39,7 +40,11 @@ const updateBodySchema = Joi.object({
   bullets: Joi.array().items(Joi.string()).optional(),
   technologies: Joi.array().items(Joi.string()).optional(),
   order: Joi.number().optional(),
-}).min(1);
+});
+
+const deleteBodySchema = Joi.object({
+  id: Joi.string().required(),
+});
 
 const reorderBodySchema = Joi.object({
   items: Joi.array().items(
@@ -62,7 +67,7 @@ module.exports = {
   },
   getById: {
     request: {
-      parameters: Joi.object({
+      query: Joi.object({
         id: Joi.string().required(),
       }),
     },
@@ -88,9 +93,6 @@ module.exports = {
   update: {
     request: {
       headers: jwtHeaderScheme,
-      parameters: Joi.object({
-        id: Joi.string().required(),
-      }),
       body: updateBodySchema,
     },
     response: {
@@ -103,9 +105,7 @@ module.exports = {
   remove: {
     request: {
       headers: jwtHeaderScheme,
-      parameters: Joi.object({
-        id: Joi.string().required(),
-      }),
+      body: deleteBodySchema,
     },
     response: {
       meta: responseMetaScheme,
