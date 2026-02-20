@@ -15,7 +15,7 @@ BootstrapHelper.createRoute({
   isAnonymous: true,
 });
 
-BootstrapHelper.createRoute({
+/*BootstrapHelper.createRoute({
   router,
   pathPrefix: '/user',
   path: '/create',
@@ -24,5 +24,6 @@ BootstrapHelper.createRoute({
   controller: UserController.createUser,
   isAnonymous: true,
 });
+*/
 
 module.exports = router;
