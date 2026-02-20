@@ -65,7 +65,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/', healthRouter);
+app.use('/health', healthRouter);
 app.use('/user', userRouter);
 app.use('/auth', authRouter);
 app.use('/setting', siteSettingRouter);
