@@ -14,7 +14,7 @@ class BlogPostService {
   }
 
   static async getBySlug({ slug }) {
-    const item = await BlogPostDataAccess.getBySlug({ slug });
+    const item = await BlogPostDataAccess.getBySlugAndIncrementReadCount({ slug });
     if (!item) throw new LogicError(NOT_FOUND);
     return item;
   }

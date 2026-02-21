@@ -9,6 +9,7 @@ const BlogPost = new mongoose.Schema({
   published_at: { type: String, required: true },
   tags: { type: [String], required: true },
   order: { type: Number, required: true },
+  read_count: { type: Number, default: 0 },
 }, {
   timestamps: {
     createdAt: 'createdAt',

@@ -13,6 +13,14 @@ class BlogPostDataAccess {
     return BlogPostModel.findOne({ slug });
   }
 
+  static async getBySlugAndIncrementReadCount({ slug }) {
+    return BlogPostModel.findOneAndUpdate(
+      { slug },
+      { $inc: { read_count: 1 } },
+      { new: true }
+    );
+  }
+
   static async create(data) {
     return BlogPostModel.create(data);
   }
