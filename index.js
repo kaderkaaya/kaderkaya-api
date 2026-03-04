@@ -2,6 +2,7 @@ require('dotenv').config();
 const http = require('http');
 const app = require('./app');
 const { logger } = require('./helpers/logger');
+const { startHealthCron } = require('./jobs/health-cron');
 
 function normalizePort(val) {
   const newPort = parseInt(val, 10);
@@ -54,6 +55,7 @@ function onListening() {
     ? `pipe ${addr}`
     : `port ${addr.port}`;
   logger.debug(`Listening on ${bind}`);
+  startHealthCron(port);
 }
 
 server.listen(port);

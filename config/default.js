@@ -59,4 +59,7 @@ module.exports = {
     email: process.env.ADMIN_EMAIL || 'admin@kaderkaya.com',
     password: process.env.ADMIN_PASSWORD || 'admin123',
   },
+  healthCron: {
+    baseUrl: process.env.HEALTH_CRON_BASE_URL || null,
+  },
 };
