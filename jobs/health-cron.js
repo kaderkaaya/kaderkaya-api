@@ -5,7 +5,7 @@ const config = require('../config');
 const HEALTH_CHECK_INTERVAL_MS = 5 * 60 * 1000;
 
 function startHealthCron(port) {
-  const baseUrl = config.healthCron?.baseUrl || `http:localhost:${port}`;
+  const baseUrl = config.healthCron?.baseUrl || `http://127.0.0.1:${port}`;
   const healthUrl = baseUrl.replace(/\/$/, '') + '/health';
 
   function pingHealth() {
